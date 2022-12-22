@@ -21,3 +21,5 @@
 + bcryptjs (for password hashing)
 + hapi/Joi (for input data validation)
 + dotenv (for env variable configuration)
++ jsonwebtoken (for generating JWT)
++ guid (for generating random 128-bit text string)
