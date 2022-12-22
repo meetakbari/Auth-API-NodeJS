@@ -6,15 +6,18 @@
 + `npm start`
 
 ### To run the tests:
-```bash
-npm test
-```
+`npm test`
+
+### To make tests automated on code changes
++ Run this command in the terminal `npx cypress open --config watchForFileChanges=true`
 
 ### Tech-Stack
 + NodeJS & ExpressJS (for development)
-+ Cypress (for API testing)
++ Cypress (for continuous API testing)
++ MongoDB (for data storage)
 
 ### Libraries Used
 + mongoose (for mongodb connection)
++ bcryptjs (for password hashing)
 + hapi/Joi (for input data validation)
 + dotenv (for env variable configuration)

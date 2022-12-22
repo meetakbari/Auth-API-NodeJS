@@ -1,17 +1,20 @@
+const Guid = require('guid'); // to generate random text string
+
 describe('/api/user/register', () => {
   const registerEndpoint = 'http://127.0.0.1:3000/api/user/register';
 
   it('creates user with valid body', () => {
+    let dynamicEmail = Guid.raw() + '@email.com';
     let body = {
       name: 'TestName',
-      email: 'test@email.com',
+      email: dynamicEmail,
       password: 'TestPassword'
     }
     cy.request('POST', registerEndpoint, body)
       .then((response) => {
         expect(response.status).to.eq(200);
         expect(response.body.name).to.eq('TestName');
-        expect(response.body.email).to.eq('test@email.com');
+        expect(response.body.email).to.eq(dynamicEmail);
         expect(response.body.password).to.eq('TestPassword');
       })
   });
@@ -76,5 +79,39 @@ describe('/api/user/register', () => {
     }).then((response) => {
       expect(response.status).to.eq(400);
     })
-  })
+  });
+
+  it('Creating a user to check for not allowing to register a user with same email', () => {
+    let body = {
+      name: 'tempUser',
+      email: 'temp@email.com',
+      password: 'Temp1233'
+    }
+
+    cy.request({
+      method: 'POST',
+      url: registerEndpoint,
+      body: body
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+    })
+  });
+
+  it('Create a user with existing email and should not allow to create a duplicate of it', () => {
+    let body = {
+      name: 'tempUser',
+      email: 'temp@email.com',
+      password: 'Temp1233'
+    }
+
+    cy.request({
+      method: 'POST',
+      url: registerEndpoint,
+      body: body,
+      failOnStatusCode: false
+    }).then((response) => {
+      expect(response.status).to.eq(400);
+      expect(response.body).to.eq('Email is already registered!');
+    })
+  });
 })
