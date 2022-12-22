@@ -15,7 +15,7 @@ describe('/api/user/register', () => {
         expect(response.status).to.eq(200);
         expect(response.body.name).to.eq('TestName');
         expect(response.body.email).to.eq(dynamicEmail);
-        expect(response.body.password).to.eq('TestPassword');
+        expect(response.body.password).to.not.eq('TestPassword');
       })
   });
 
@@ -81,10 +81,11 @@ describe('/api/user/register', () => {
     })
   });
 
+  let tempEmail = Guid.raw() + '@bar.com';
   it('Creating a user to check for not allowing to register a user with same email', () => {
     let body = {
       name: 'tempUser',
-      email: 'temp@email.com',
+      email: tempEmail,
       password: 'Temp1233'
     }
 
@@ -100,7 +101,7 @@ describe('/api/user/register', () => {
   it('Create a user with existing email and should not allow to create a duplicate of it', () => {
     let body = {
       name: 'tempUser',
-      email: 'temp@email.com',
+      email: tempEmail,
       password: 'Temp1233'
     }
 
