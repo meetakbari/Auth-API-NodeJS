@@ -2,7 +2,7 @@
 
 ### To run the app:
 + `npm install`
-+ Create .env file and add your mongodb cluster url as DB_CONNECT variable.
++ Create .env file and add mongoDB URI as DB_CONNECT and jwt random token secret as TOKEN_SECRET.
 + `npm start`
 
 ### To run the tests:
