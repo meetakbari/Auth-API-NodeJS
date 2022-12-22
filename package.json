@@ -1,7 +1,7 @@
 {
-  "name": "auth-api-tut-udemy",
+  "name": "auth-api-nodejs",
   "version": "1.0.0",
-  "description": "Writing Authentication API in node.js & testing it using Cypress",
+  "description": "Authentication API written in NodeJS & tested using Cypress",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -11,7 +11,8 @@
     "cypress",
     "nodejs",
     "api",
-    "auth"
+    "authentication",
+    "mongodb"
   ],
   "author": "Meet Akbari",
   "license": "ISC",
